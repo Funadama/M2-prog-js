@@ -1,16 +1,22 @@
 class App
 {
-    runApplication()
+    runApplication(check, xtree, ytree)
     {
-        console.log("Hello World!");
         let canvas = document.getElementById("canvasId");
         let g = canvas.getContext("2d");
-        this.tekenhuis(g, 0, 0, 2)
-        this.tekenhuis(g, 350, 0, 1.6)
-        this.Kerstboom(g, 200, 100)
-        this.Kerstboom(g, 300, 100)
-        this.Kerstboom(g, 400, 100)
-        this.Kerstboom(g, 500, 100)
+        if (check == 1)
+        {
+            this.Kerstboom(g, xtree, ytree)
+        }
+        else
+        {
+            this.tekenhuis(g, 0, 0, 2)
+            this.tekenhuis(g, 350, 0, 1.6)
+            this.Kerstboom(g, 200, 100)
+            this.Kerstboom(g, 300, 100)
+            this.Kerstboom(g, 400, 100)
+            this.Kerstboom(g, 500, 100)
+        }
         console.log(canvas)
     }
 
@@ -94,7 +100,17 @@ class App
         }
         
     }
+    
 }
 
+document.addEventListener('click', printMousePos, true);
+function printMousePos(e){
+    var cursorX = e.pageX;
+    var cursorY= e.pageY;
+    console.log (cursorX, cursorY)
+    app.runApplication(1, cursorX, cursorY)    
+}
+
+
 let app = new App();
-app.runApplication();
+app.runApplication(0, 0, 0);
